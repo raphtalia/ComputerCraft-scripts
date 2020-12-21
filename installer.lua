@@ -1,1 +1,1 @@
-local repo = "https://github.com/raphtalia/ComputerCraft-scripts"
+print("Hello World!")

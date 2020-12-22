@@ -15,7 +15,7 @@ else
     else
         -- Install using Http
         print("Installing from Github")
-        shell.run("pastebin", "run", "wPtGKMam", "raphtalia", "ComputerCraft-scripts", "sysPackage", ".")
+        shell.run("pastebin", "run", "wPtGKMam", "raphtalia", "ComputerCraft-scripts", "src", ".")
         shell.run("mv", "sysPackage/ComputerCraft-scripts/src", "")
         shell.run("mv", "sysPackage/ComputerCraft-scripts/startup", "")
     end

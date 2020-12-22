@@ -1,0 +1,3 @@
+local NetworkService = {}
+
+return NetworkService

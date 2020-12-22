@@ -1,1 +1,1 @@
-print("Hello World!")
+loadstring(http.get("https://raw.githubusercontent.com/raphtalia/ComputerCraft-scripts/master/installer.lua").readAll())()

@@ -1,3 +1,0 @@
-local JSON = {}
-
-return JSON

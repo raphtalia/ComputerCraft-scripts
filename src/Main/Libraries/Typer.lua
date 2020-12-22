@@ -1,3 +1,0 @@
-local Typer = {}
-
-return Typer

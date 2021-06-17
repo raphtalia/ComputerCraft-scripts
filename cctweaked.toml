@@ -251,23 +251,149 @@ type = "any"
 [[keys.getName.args]]
 type = "any"
 
-[[multishell.getFocus.args]]
+[[os.pullEvent.args]]
 type = "any"
 
-[[multishell.setFocus.args]]
+[[os.pullEventRaw.args]]
 type = "any"
 
-[[multishell.getTitle.args]]
+[[os.sleep.args]]
 type = "any"
 
-[[multishell.setTitle.args]]
+[[os.version.args]]
 type = "any"
 
-[[multishell.getCurrent.args]]
+[[os.run.args]]
 type = "any"
 
-[[multishell.launch.args]]
+[[os.queueEvent.args]]
 type = "any"
 
-[[multishell.getCount.args]]
+[[os.startTimer.args]]
+type = "any"
+
+[[os.cancelTimer.args]]
+type = "any"
+
+[[os.setAlarm.args]]
+type = "any"
+
+[[os.cancelAlarm.args]]
+type = "any"
+
+[[os.shutdown.args]]
+type = "any"
+
+[[os.reboot.args]]
+type = "any"
+
+[[os.getComputerID.args]]
+type = "any"
+
+[[os.computerID.args]]
+type = "any"
+
+[[os.getComputerLabel.args]]
+type = "any"
+
+[[os.computerLabel.args]]
+type = "any"
+
+[[os.setComputerLabel.args]]
+type = "any"
+
+[[os.day.args]]
+type = "any"
+
+[[paintutils.parseImage.args]]
+type = "any"
+
+[[paintutils.loadImage.args]]
+type = "any"
+
+[[paintutils.drawPixel.args]]
+type = "any"
+
+[[paintutils.drawLine.args]]
+type = "any"
+
+[[paintutils.drawBox.args]]
+type = "any"
+
+[[paintutils.drawFilledBox.args]]
+type = "any"
+
+[[paintutils.drawImage.args]]
+type = "any"
+
+[[parallel.waitForAny.args]]
+type = "any"
+
+[[parallel.waitForAll.args]]
+type = "any"
+
+[[peripheral.getNames.args]]
+type = "any"
+
+[[peripheral.isPresent.args]]
+type = "any"
+
+[[peripheral.getType.args]]
+type = "any"
+
+[[peripheral.getMethods.args]]
+type = "any"
+
+[[peripheral.getName.args]]
+type = "any"
+
+[[peripheral.call.args]]
+type = "any"
+
+[[peripheral.wrap.args]]
+type = "any"
+
+[[peripheral.find.args]]
+type = "any"
+
+[[pocket.equipBack.args]]
+type = "any"
+
+[[pocket.unequipBack.args]]
+type = "any"
+
+[rednet.CHANNEL_BROADCAST]
+property = true
+
+[rednet.CHANNEL_REPEAT]
+property = true
+
+[[rednet.open.args]]
+type = "any"
+
+[[rednet.close.args]]
+type = "any"
+
+[[rednet.isOpen.args]]
+type = "any"
+
+[[rednet.send.args]]
+type = "any"
+
+[[rednet.broadcast.args]]
+type = "any"
+
+[[rednet.receive.args]]
+type = "any"
+
+[[rednet.host.args]]
+type = "any"
+
+[[rednet.unhost.args]]
+type = "any"
+
+[[rednet.lookup.args]]
+type = "any"
+
+[[rednet.run.args]]
 type = "any"

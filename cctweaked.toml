@@ -2,7 +2,6 @@
 
 # ComputerCraft: Tweaked
 [cctweaked]
-base = "lua51"
 name = "cctweaked"
 
 [colors.white]

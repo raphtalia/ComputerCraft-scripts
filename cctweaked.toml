@@ -4,3 +4,51 @@
 [selene]
 base = "lua51"
 name = "cctweaked"
+
+[colors.white]
+property = true
+
+[colors.orange]
+property = true
+
+[colors.magenta]
+property = true
+
+[colors.lightBlue]
+property = true
+
+[colors.yellow]
+property = true
+
+[colors.lime]
+property = true
+
+[colors.pink]
+property = true
+
+[colors.gray]
+property = true
+
+[colors.lightGray]
+property = true
+
+[colors.cyan]
+property = true
+
+[colors.purple]
+property = true
+
+[colors.blue]
+property = true
+
+[colors.brown]
+property = true
+
+[colors.green]
+property = true
+
+[colors.red]
+property = true
+
+[colors.black]
+property = true

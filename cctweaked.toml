@@ -175,3 +175,6 @@ property = true
 
 [[gps.locate]]
 type = "any"
+
+[[help.path.args]]
+type = "any"

@@ -6,4 +6,6 @@
     loadstring(http.get("https://raw.githubusercontent.com/raphtalia/ComputerCraft-scripts/development/installer.lua").readAll())()
 ]]
 
-print("test")
+return function()
+    print("test")
+end

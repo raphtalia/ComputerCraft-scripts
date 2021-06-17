@@ -1,50 +1,273 @@
+## TODO: Typecheck arguments
+
 # ComputerCraft: Tweaked
 [cctweaked]
 base = "lua51"
 name = "cctweaked"
 
-[cctweaked.structs.colors."*"]
+[colors.white]
+property = true
 
-[cctweaked.structs.colours."*"]
+[colors.orange]
+property = true
 
-[cctweaked.structs.commands."*"]
+[colors.magenta]
+property = true
 
-[cctweaked.structs.disk."*"]
+[colors.lightBlue]
+property = true
 
-[cctweaked.structs.fs."*"]
+[colors.yellow]
+property = true
 
-[cctweaked.structs.gps."*"]
+[colors.lime]
+property = true
 
-[cctweaked.structs.help."*"]
+[colors.pink]
+property = true
 
-[cctweaked.structs.http."*"]
+[colors.gray]
+property = true
 
-[cctweaked.structs.keys."*"]
+[colors.lightGray]
+property = true
 
-[cctweaked.structs.multishell."*"]
+[colors.cyan]
+property = true
 
-[cctweaked.structs.paintutils."*"]
+[colors.purple]
+property = true
 
-[cctweaked.structs.parallel."*"]
+[colors.blue]
+property = true
 
-[cctweaked.structs.peripheral."*"]
+[colors.brown]
+property = true
 
-[cctweaked.structs.pocket."*"]
+[colors.green]
+property = true
 
-[cctweaked.structs.rednet."*"]
+[colors.red]
+property = true
 
-[cctweaked.structs.redstone."*"]
+[colors.black]
+property = true
 
-[cctweaked.structs.settings."*"]
+[[commands.native.args]]
+type = "any"
 
-[cctweaked.structs.shell."*"]
+[[commands.async.args]]
+type = "any"
 
-[cctweaked.structs.term."*"]
+[[commands.exec.args]]
+type = "any"
 
-[cctweaked.structs.textutils."*"]
+[[commands.execAsync.args]]
+type = "any"
 
-[cctweaked.structs.turtle."*"]
+[[commands.list.args]]
+type = "any"
 
-[cctweaked.structs.vector."*"]
+[[commands.getBlockPosition.args]]
+type = "any"
 
-[cctweaked.structs.window."*"]
+[[commands.getBlockInfos.args]]
+type = "any"
+
+[[commands.getBlockInfo.args]]
+type = "any"
+
+[[disk.isPresent.args]]
+type = "any"
+
+[[disk.getLabel.args]]
+type = "any"
+
+[[disk.setLabel.args]]
+type = "any"
+
+[[disk.hasData.args]]
+type = "any"
+
+[[disk.getMountPath.args]]
+type = "any"
+
+[[disk.hasAudio.args]]
+type = "any"
+
+[[disk.getAudioTitle.args]]
+type = "any"
+
+[[disk.playAudio.args]]
+type = "any"
+
+[[disk.stopAudio.args]]
+type = "any"
+
+[[disk.eject.args]]
+type = "any"
+
+[[disk.getID.args]]
+type = "any"
+
+[[fs.isDriveRoot.args]]
+type = "any"
+
+[[fs.complete.args]]
+type = "any"
+
+[[fs.list.args]]
+type = "any"
+
+[[fs.combine.args]]
+type = "any"
+
+[[fs.getName.args]]
+type = "any"
+
+[[fs.getDir.args]]
+type = "any"
+
+[[fs.getSize.args]]
+type = "any"
+
+[[fs.exists.args]]
+type = "any"
+
+[[fs.isDir.args]]
+type = "any"
+
+[[fs.isReadOnly.args]]
+type = "any"
+
+[[fs.makeDir.args]]
+type = "any"
+
+[[fs.move.args]]
+type = "any"
+
+[[fs.copy.args]]
+type = "any"
+
+[[fs.delete.args]]
+type = "any"
+
+[[fs.open.args]]
+type = "any"
+
+[[fs.getDrive.args]]
+type = "any"
+
+[[fs.getFreeSpace.args]]
+type = "any"
+
+[[fs.find.args]]
+type = "any"
+
+[[fs.getCapacity.args]]
+type = "any"
+
+[[fs.attributes.args]]
+type = "any"
+
+[gps.CHANNEL_GPS]
+property = true
+
+[[gps.locate]]
+type = "any"
+
+[[help.path.args]]
+type = "any"
+
+[[help.setPath.args]]
+type = "any"
+
+[[help.lookup.args]]
+type = "any"
+
+[[help.topics.args]]
+type = "any"
+
+[[help.completeTopic.args]]
+type = "any"
+
+[[http.request.args]]
+type = "any"
+
+[[http.get.args]]
+type = "any"
+
+[[http.post.args]]
+type = "any"
+
+[[http.checkURLAsync.args]]
+type = "any"
+
+[[http.checkURL.args]]
+type = "any"
+
+[[http.websocket.args]]
+type = "any"
+
+[[http.websocketAsync.args]]
+type = "any"
+
+[io.stdin]
+property = true
+
+[io.stdout]
+property = true
+
+[io.stderr]
+property = true
+
+[[io.close.args]]
+type = "any"
+
+[[io.flush.args]]
+type = "any"
+
+[[io.input.args]]
+type = "any"
+
+[[io.lines.args]]
+type = "any"
+
+[[io.open.args]]
+type = "any"
+
+[[io.output.args]]
+type = "any"
+
+[[io.read.args]]
+type = "any"
+
+[[io.type.args]]
+type = "any"
+
+[[io.write.args]]
+type = "any"
+
+[[keys.getName.args]]
+type = "any"
+
+[[multishell.getFocus.args]]
+type = "any"
+
+[[multishell.setFocus.args]]
+type = "any"
+
+[[multishell.getTitle.args]]
+type = "any"
+
+[[multishell.setTitle.args]]
+type = "any"
+
+[[multishell.getCurrent.args]]
+type = "any"
+
+[[multishell.launch.args]]
+type = "any"
+
+[[multishell.getCount.args]]
+type = "any"

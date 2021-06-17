@@ -11,5 +11,5 @@
 ]]
 
 return function()
-    error("test")
+    error("test2")
 end

@@ -169,3 +169,6 @@ type = "any"
 
 [[fs.attributes.args]]
 type = "any"
+
+[gps.CHANNEL_GPS]
+property = true

@@ -1,1 +1,1 @@
-std = "lua51+cctweaked"
+std = "cctweaked"

@@ -69,6 +69,10 @@ local GithubAPI = {
             "vnd.github.VERSION.raw"
         )
     end
+
+    function GithubAPI.getLatestCommit()
+        return GithubAPI.listCommits()[1]
+    end
 end
 
 local Installer = {} do
@@ -98,16 +102,14 @@ local Installer = {} do
         end
     end
 
-    function Installer.install(path)
+    function Installer.install(path, commitSha)
         if fs.exists(path) then
             fs.delete(path)
         end
 
-        local commit = GithubAPI.listCommits()[1]
+        print("Installing commit ".. commitSha)
 
-        print("Installing commit ".. commit.sha)
-
-        Installer._makeTree(path, commit.sha)
+        Installer._makeTree(path, commitSha)
     end
 end
 
@@ -253,10 +255,16 @@ return function(repositoryBranch)
 
     GithubAPI.Branch = repositoryBranch
 
-    Installer.install(installPaths[1])
-    for i = 2, #installPaths do
-        fs.copy(installPaths[1], installPaths[i])
-    end
+    local commitSha = GithubAPI.getLatestCommit().sha
+        if choiceBoolean("> The latest commit is %s, is this the correct commit?") then
 
-    print(("\nInstallation finished in %d seconds"):format(os.clock() - installStart))
+        Installer.install(installPaths[1])
+        for i = 2, #installPaths do
+            fs.copy(installPaths[1], installPaths[i])
+        end
+
+        print(("\nInstallation finished in %d seconds"):format(os.clock() - installStart))
+    else
+        print("\nInstallation aborted")
+    end
 end

@@ -83,7 +83,7 @@ local GithubAPI = {
     end
 
     function GithubAPI.getBlob(sha)
-        return get("/git/blos/".. sha)
+        return get("/git/blobs/".. sha)
     end
 end
 

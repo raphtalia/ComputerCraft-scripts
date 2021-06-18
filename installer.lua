@@ -58,21 +58,19 @@ local function choiceOptions(text, options)
 end
 
 return function()
-    print(input("input test"))
+    local diskDrive = peripheral.find("drive")
+    local installChoice = 1
 
-    print(choiceBoolean(
-        "this is a boolean",
-        "this is the true option",
-        "this is the false option"
-    ))
+    if diskDrive then
+        installChoice = choiceOptions(
+            "A disk drive was detected, where would you like to install to?",
+            {
+                {"one", "Computer"},
+                {"two", "Disk Drive"},
+                {"three", "Both"},
+            }
+        )
+    end
 
-    print(choiceOptions(
-        "options prompt",
-        {
-            {"a", "uwu"},
-            {"b", "owo"},
-            {"one", "test1"},
-            {"two", "test2"},
-        }
-    ))
+    print(installChoice)
 end

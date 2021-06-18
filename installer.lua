@@ -110,5 +110,7 @@ return function()
         )][2])
     end
 
-    print(installPaths)
+    for _,path in ipairs(installPaths) do
+        print(path)
+    end
 end

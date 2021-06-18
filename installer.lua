@@ -13,8 +13,112 @@
 local NUMBERS = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"}
 
 local Base64 = {} do
-    function Base64.decode()
-        
+    -- https://github.com/Reselim/Base64/blob/master/Base64.lua
+
+    local BUILD_STRING_CHUNK_SIZE = 4096
+
+    local function build(values)
+        local chunks = {}
+
+        for index = 1, #values, BUILD_STRING_CHUNK_SIZE do
+            table.insert(chunks, string.char(
+                unpack(values, index, math.min(index + BUILD_STRING_CHUNK_SIZE - 1, #values))
+            ))
+        end
+
+        return table.concat(chunks, "")
+    end
+
+    function Base64.decode(source)
+        local sourceLength = #source
+
+        local outputLength = (sourceLength / 3) * 4
+        local output = {}
+
+        for index = 0, (sourceLength / 4) - 1 do
+            local inputIndex = bit32.lshift(index, 2) + 1
+            local outputIndex = index * 3 + 1
+
+            local value1, value2, value3, value4 = string.byte(source, inputIndex, inputIndex + 3)
+
+            if value1 >= 97 then -- a-z
+                value1 = value1 - 71 -- 97 - 26
+            elseif value1 >= 65 then -- A-Z
+                value1 = value1 - 65 -- 65 - 0
+            elseif value1 >= 48 then -- 0-9
+                value1 = value1 + 4 -- 52 - 48
+            elseif value1 == 47 then -- /
+                value1 = 63
+            elseif value1 == 43 then -- +
+                value1 = 62
+            elseif value1 == 61 then -- =
+                value1 = 0
+            end
+
+            if value2 >= 97 then -- a-z
+                value2 = value2 - 71 -- 97 - 26
+            elseif value2 >= 65 then -- A-Z
+                value2 = value2 - 65 -- 65 - 0
+            elseif value2 >= 48 then -- 0-9
+                value2 = value2 + 4 -- 52 - 48
+            elseif value2 == 47 then -- /
+                value2 = 63
+            elseif value2 == 43 then -- +
+                value2 = 62
+            elseif value2 == 61 then -- =
+                value1 = 0
+            end
+
+            if value3 >= 97 then -- a-z
+                value3 = value3 - 71 -- 97 - 26
+            elseif value3 >= 65 then -- A-Z
+                value3 = value3 - 65 -- 65 - 0
+            elseif value3 >= 48 then -- 0-9
+                value3 = value3 + 4 -- 52 - 48
+            elseif value3 == 47 then -- /
+                value3 = 63
+            elseif value3 == 43 then -- +
+                value3 = 62
+            elseif value3 == 61 then -- =
+                value1 = 0
+            end
+
+            if value4 >= 97 then -- a-z
+                value4 = value4 - 71 -- 97 - 26
+            elseif value4 >= 65 then -- A-Z
+                value4 = value4 - 65 -- 65 - 0
+            elseif value4 >= 48 then -- 0-9
+                value4 = value4 + 4 -- 52 - 48
+            elseif value4 == 47 then -- /
+                value4 = 63
+            elseif value4 == 43 then -- +
+                value4 = 62
+            elseif value4 == 61 then -- =
+                value1 = 0
+            end
+
+            -- Combine all variables into one 24-bit variable to be split up
+            local compound = bit32.bor(
+                bit32.lshift(value1, 18),
+                bit32.lshift(value2, 12),
+                bit32.lshift(value3, 6),
+                value4
+            )
+
+            output[outputIndex] = bit32.rshift(compound, 16)
+            output[outputIndex + 1] = bit32.band(bit32.rshift(compound, 8), 0b11111111)
+            output[outputIndex + 2] = bit32.band(compound, 0b11111111)
+        end
+
+        -- If the last couple of characters were padding, remove them from the output
+        if string.byte(source, sourceLength) == 61 then
+            output[outputLength] = nil
+        end
+        if string.byte(source, sourceLength - 1) == 61 then
+            output[outputLength - 1] = nil
+        end
+
+        return build(output)
     end
 end
 
@@ -26,7 +130,6 @@ local GithubAPI = {
     -- Ported from https://github.com/raphtalia/GithubLuaAPI
 
     local function get(path, queryParams)
-        print("GETTING")
         local url = GithubAPI.RepositoryUrl.. path
 
         local i = 1
@@ -48,7 +151,6 @@ local GithubAPI = {
     end
 
     function GithubAPI.listCommits()
-        print("LISTING")
         return get(
             "/commits",
             {
@@ -63,6 +165,42 @@ local GithubAPI = {
 
     function GithubAPI.getBlob(sha)
         return get("/git/blos/".. sha)
+    end
+end
+
+local Installer = {} do
+    function Installer._makeFile(path, sha)
+        print("Making ".. path)
+        local blob = GithubAPI.getBlob(sha)
+
+        local file = io.open(path, "w")
+        if blob.encoding == "Base64" then
+            file.write(Base64.decode(blob.content))
+        else
+            error(("Unknown encoding type %q"):format(blob.encoding))
+        end
+        file.close()
+    end
+
+    function Installer._makeTree(path, sha)
+        print("Making ".. path)
+        local tree = GithubAPI.getTree(sha)
+
+        for _,obj in ipairs(tree.tree) do
+            if obj.type == "blob" then
+                Installer._makeFile(("%s/%s"):format(path, obj.path), obj.sha)
+            elseif obj.type == "tree" then
+                Installer._makeTree(("%s/%s"):format(path, obj.path), obj.sha)
+            end
+        end
+    end
+
+    function Installer.install(path)
+        local commit = GithubAPI.listCommits()[1]
+
+        print("Installing commit ".. commit.sha)
+
+        Installer._makeTree(path, commit.sha)
     end
 end
 
@@ -141,15 +279,6 @@ local function getDiskDrives()
     return diskDrives
 end
 
-local function install(path)
-    print("FETCHING")
-
-    local commit = GithubAPI.listCommits()[1]
-    for i,v in pairs(commit) do
-        print(i,v)
-    end
-end
-
 return function(repositoryBranch)
     local installPaths = {}
 
@@ -206,6 +335,6 @@ return function(repositoryBranch)
     GithubAPI.Branch = repositoryBranch
 
     for _,path in ipairs(installPaths) do
-        install(path)
+        Installer.install(path)
     end
 end

@@ -139,6 +139,7 @@ local function choiceBoolean(text, trueOption, falseOption)
             return false
         end
     end
+    sleep(0.1)
 end
 
 local function choiceOptions(text, options)
@@ -167,6 +168,7 @@ local function choiceOptions(text, options)
             return option[1]
         end
     end
+    sleep(0.1)
 end
 
 local function getDiskDrives()
@@ -256,7 +258,7 @@ return function(repositoryBranch)
     GithubAPI.Branch = repositoryBranch
 
     local commitSha = GithubAPI.getLatestCommit().sha
-    if choiceBoolean("> The latest commit is %s, is this the correct commit?") then
+    if choiceBoolean(("> The latest commit is %s, is this the correct commit?"):format(commitSha)) then
         Installer.install(installPaths[1], commitSha)
         for i = 2, #installPaths do
             local path = installPaths[i]

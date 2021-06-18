@@ -1,19 +1,47 @@
 local ROOT_PATH = fs.getDir(shell.getRunningProgram())
-local SRC_PATH = ROOT_PATH.. "/.raphtalia/src/Core"
+local SRC_PATH = ROOT_PATH.. "/.raphtalia/src"
+local CORE_PATH = SRC_PATH.. "/Core"
 
-local LIBRARIES_PATH = SRC_PATH.. "/Libraries"
-local SERVICES_PATH = SRC_PATH.. "/Services"
-local HANDLERS_PATH = SRC_PATH.. "/Handlers"
+local LIBRARIES_PATH = CORE_PATH.. "/Libraries"
+local SERVICES_PATH = CORE_PATH.. "/Services"
+local HANDLERS_PATH = CORE_PATH.. "/Handlers"
 
-local Environment = _G
+local Environment
 
 local function require(path, env, ...)
+    env = env or _G
+
     if fs.isDir(path) then
-        return (loadfile(path.. "/init.lua", env) or loadfile(path.. "/main.lua", env))(...)
+        if fs.exists(path.. "/init.lua") then
+            path = path.. "/init.lua"
+        elseif fs.exists(path.. "/main.lua") then
+            path = path.. "/main.lua"
+        end
+
+        env = setmetatable(
+            {
+                script = {
+                    Directory = fs.getDir(path),
+                    Name = fs.getName(path),
+                }
+            },
+            env
+        )
+        return loadfile(path, env)(...)
     else
+        env = setmetatable(
+            {
+                script = {
+                    Directory = path
+                }
+            },
+            env
+        )
         return (loadfile(path, env))(...)
     end
 end
+
+Environment = setmetatable(require(CORE_PATH.. "/Environment.lua"), _G)
 
 for _,libraryName in ipairs(fs.list(LIBRARIES_PATH)) do
     print("Loading library ".. libraryName)
@@ -25,7 +53,8 @@ for _,serviceName in ipairs(fs.list(SERVICES_PATH)) do
     require(("%s/%s"):format(SERVICES_PATH, serviceName), Environment)
 end
 
+local parallelRequire = coroutine.wrap(require)
 for _,handlerName in ipairs(fs.list(HANDLERS_PATH)) do
     print("Loading handler ".. handlerName)
-    require(("%s/%s"):format(HANDLERS_PATH, handlerName), Environment)
+    parallelRequire(("%s/%s"):format(HANDLERS_PATH, handlerName), Environment)
 end

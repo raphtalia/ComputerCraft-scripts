@@ -12,31 +12,6 @@
 
 local NUMBERS = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"}
 
-local Base64 = {} do
-    -- https://gist.github.com/bortels/1436940
-
-    local b='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
-
-    function Base64.decode(data)
-        data = string.gsub(data, '[^'..b..'=]', '')
-        return (data:gsub('.', function(x)
-            if x == '=' then return '' end
-            local r,f='',(b:find(x)-1)
-            for i=6,1,-1 do
-                r=r..(f%2^i-f%2^(i-1)>0 and '1' or '0')
-            end
-            return r;
-        end):gsub('%d%d%d?%d?%d?%d?%d?%d?', function(x)
-            if #x ~= 8 then return '' end
-            local c=0
-            for i=1,8 do
-                c=c+(x:sub(i,i)=='1' and 2^(7-i) or 0)
-            end
-            return string.char(c)
-        end))
-    end
-end
-
 local GithubAPI = {
     RepositoryUrl = "https://api.github.com/repos/raphtalia/ComputerCraft-Scripts",
     Branch = "main",
@@ -67,23 +42,23 @@ local GithubAPI = {
             error(e)
         end
 
-        return textutils.unserializeJSON(response:readAll())
+        return response:readAll()
     end
 
     function GithubAPI.listCommits()
-        return get(
+        return textutils.unserializeJSON(get(
             "/commits",
             {
                 sha = GithubAPI.Branch,
             }
-        )
+        ))
     end
 
     function GithubAPI.getTree(sha)
-        return get("/git/trees/".. sha)
+        return textutils.unserializeJSON(get("/git/trees/".. sha))
     end
 
-    function GithubAPI.getBlob(sha)
+    function GithubAPI.getBlobRaw(sha)
         return get("/git/blobs/".. sha)
     end
 end
@@ -91,18 +66,14 @@ end
 local Installer = {} do
     function Installer._makeFile(path, sha)
         print("Making ".. path)
-        local blob = GithubAPI.getBlob(sha)
+        local raw = GithubAPI.getBlobRaw(sha)
 
         local file, e = fs.open(path, "w")
         if not file then
             error(e)
         end
 
-        if blob.encoding == "base64" then
-            file.write(Base64.decode(blob.content))
-        else
-            error(("Unknown encoding type %q"):format(blob.encoding))
-        end
+        file.write(raw)
         file.close()
     end
 

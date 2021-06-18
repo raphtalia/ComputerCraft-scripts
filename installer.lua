@@ -19,15 +19,15 @@ end
 
 local function input(text, ...)
     clear()
-    print("\n".. text)
+    print(("\n%s "):format(text))
     return read(...)
 end
 
 local function choiceBoolean(text, trueOption, falseOption)
-    while true do
-        clear()
-        print(("\n%s\n[Y] %s\n[N] %s"):format(text, trueOption, falseOption))
+    clear()
+    print(("\n%s\n[Y] %s\n[N] %s"):format(text, trueOption or "Yes", falseOption or "No"))
 
+    while true do
         local eventData = {os.pullEvent("key")}
         local keyName = keys.getName(eventData[2])
 
@@ -49,14 +49,14 @@ local function choiceOptions(text, options)
         keyedOptions[keyName] = {i, optionText}
     end
 
+    clear()
+    print("\n".. text)
+
+    for key, option in pairs(keyedOptions) do
+        print(("\n[%s] %s"):format(key, option[2]))
+    end
+
     while true do
-        clear()
-        print("\n".. text)
-
-        for key, option in pairs(keyedOptions) do
-            print(("\n[%s] %s"):format(key, option[2]))
-        end
-
         local eventData = {os.pullEvent("key")}
         local keyName = keys.getName(eventData[2])
 
@@ -87,6 +87,10 @@ local function getDiskDrives()
     return diskDrives
 end
 
+local function install(path, apitoken)
+    print(path, apitoken)
+end
+
 return function()
     local installPaths = {}
 
@@ -112,15 +116,33 @@ return function()
             end
         end
 
-        table.insert(installPaths, options[choiceOptions(
-            "> Which floppy disk would you like to use?",
-            options
-        )][2])
+        while true do
+            local floppyDiskPath = options[choiceOptions(
+                "> Which floppy disk would you like to use?",
+                options
+            )][2]
+
+            if fs.exists(floppyDiskPath.. "/startup") or fs.exists(floppyDiskPath.. "/startup.lua") then
+                if choiceBoolean("> This floppy disk already contains a startup file would you like to override it?") then
+                    table.insert(installPaths, floppyDiskPath)
+                    break
+                end
+            end
+        end
+    end
+
+    local apitoken
+    if choiceBoolean("> Would you like to use a Github API token to avoid ratelimiting?") then
+        apitoken = input("Token:", "*")
     end
 
     clear()
     print("\nInstalling to")
     for _,path in ipairs(installPaths) do
         print("\n".. path)
+    end
+
+    for _,path in ipairs(installPaths) do
+        install(path, apitoken)
     end
 end

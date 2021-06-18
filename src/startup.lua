@@ -8,6 +8,20 @@ local HANDLERS_PATH = CORE_PATH.. "/Handlers"
 
 local Environment
 
+local function loadfile(path, env)
+    local file = fs.open(path, "r")
+
+    local ok, e = loadstring(file:readAll())
+        if ok then
+        local func = setfenv(ok, env)
+
+        file:close()
+        return func
+    else
+        error(("\n%s\n%s"):format(path, e))
+    end
+end
+
 local function require(path, env, ...)
     env = env or _G
 
@@ -27,12 +41,7 @@ local function require(path, env, ...)
             },
             env
         )
-        local ok, e = loadfile(path, env)
-        if ok then
-            return ok(...)
-        else
-            error(("\n%s\n%s"):format(path, e))
-        end
+        loadfile(path, env)(...)
     else
         env = setmetatable(
             {
@@ -42,12 +51,7 @@ local function require(path, env, ...)
             },
             env
         )
-        local ok, e = loadfile(path, env)
-        if ok then
-            return ok(...)
-        else
-            error(("\n%s\n%s"):format(path, e))
-        end
+        loadfile(path, env)(...)
     end
 end
 

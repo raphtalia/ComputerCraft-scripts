@@ -10,6 +10,8 @@
     pastebin run PRPGTyxj
 ]]
 
+local NUMBERS = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"}
+
 local function input(text, ...)
     print("\n".. text)
     return read(...)
@@ -57,20 +59,56 @@ local function choiceOptions(text, options)
     end
 end
 
-return function()
-    local diskDrive = peripheral.find("drive")
-    local installChoice = 1
+local function getDiskDrives()
+    local peripherals = {
+        left = peripheral.wrap("left"),
+        right = peripheral.wrap("right"),
+        front = peripheral.wrap("front"),
+        back = peripheral.wrap("back"),
+        top = peripheral.wrap("top"),
+        bottom = peripheral.wrap("bottom"),
+    }
+    local diskDrives = {}
 
-    if diskDrive then
-        installChoice = choiceOptions(
-            "A disk drive was detected, where would you like to install to?",
-            {
-                {"one", "Computer"},
-                {"two", "Disk Drive"},
-                {"three", "Both"},
-            }
-        )
+    for _,diskDrive in pairs(peripherals) do
+        if peripheral.getType(diskDrive) == "drive" then
+            table.insert(diskDrives, diskDrive)
+        end
     end
 
-    print(installChoice)
+    return diskDrives
+end
+
+return function()
+    local installPaths = {}
+
+    local installChoice = choiceOptions(
+        "A disk drive with a floppy disk was detected, where would you like to install to?",
+        {
+            {NUMBERS[1], "Computer"},
+            {NUMBERS[2], "Floppy disk"},
+            {NUMBERS[3], "Both"},
+        }
+    )
+
+    if installChoice == 1 or installChoice == 2 then
+        installPaths = {"/rom"}
+    end
+
+    if installChoice == 2 or installChoice == 3 then
+        local options = {}
+
+        for _,diskDrive in ipairs(getDiskDrives()) do
+            if diskDrive.hasData() then
+                table.insert(options, {NUMBERS[#options + 1], diskDrive.getMountPath()})
+            end
+        end
+
+        table.insert(installPaths, options[choiceOptions(
+            "Which floppy disk would you like to use?",
+            options
+        )][2])
+    end
+
+    print(installPaths)
 end

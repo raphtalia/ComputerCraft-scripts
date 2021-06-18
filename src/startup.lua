@@ -27,7 +27,12 @@ local function require(path, env, ...)
             },
             env
         )
-        return loadfile(path, env)(...)
+        local ok, e = loadfile(path, env)
+        if ok then
+            return ok(...)
+        else
+            error(("\n%s\n%s"):format(path, e))
+        end
     else
         env = setmetatable(
             {
@@ -37,7 +42,12 @@ local function require(path, env, ...)
             },
             env
         )
-        return (loadfile(path, env))(...)
+        local ok, e = loadfile(path, env)
+        if ok then
+            return ok(...)
+        else
+            error(("\n%s\n%s"):format(path, e))
+        end
     end
 end
 

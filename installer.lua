@@ -221,6 +221,7 @@ return function(repositoryBranch)
         GithubAPI.Token = input("Github API Token", "*")
     end
 
+    local installStart = os.clock()
     clear()
     print("\nInstalling to")
     for _,path in ipairs(installPaths) do
@@ -232,4 +233,6 @@ return function(repositoryBranch)
     for _,path in ipairs(installPaths) do
         Installer.install(path)
     end
+
+    print(("\nInstallation finished in %c seconds"):format(os.clock() - installStart))
 end

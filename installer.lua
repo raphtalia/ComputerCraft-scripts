@@ -26,6 +26,7 @@ local GithubAPI = {
     -- Ported from https://github.com/raphtalia/GithubLuaAPI
 
     local function get(path, queryParams)
+        print("GETTING")
         local url = GithubAPI.RepositoryUrl.. path
 
         local i = 1
@@ -47,6 +48,7 @@ local GithubAPI = {
     end
 
     function GithubAPI.listCommits()
+        print("LISTING")
         return get(
             "/commits",
             {
@@ -140,6 +142,8 @@ local function getDiskDrives()
 end
 
 local function install(path)
+    print("FETCHING")
+
     local commit = GithubAPI.listCommits()[1]
     for i,v in pairs(commit) do
         print(i,v)

@@ -272,6 +272,10 @@ return function(repositoryBranch)
         end
 
         print(("\nInstallation finished in %d seconds"):format(os.clock() - installStart))
+
+        print("\nRebooting in 3 seconds")
+        sleep(3)
+        os.reboot()
     else
         printError("\nInstallation aborted")
     end

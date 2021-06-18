@@ -73,15 +73,13 @@ end
 
 local Installer = {} do
     function Installer._makeFile(path, sha)
-        print("Making ".. path)
+        print("Copying ".. path)
         local raw = GithubAPI.getBlobRaw(sha)
 
         local file, e = fs.open(path, "w")
         if not file then
             error(e)
         end
-
-        print(raw)
 
         file.write(raw)
         file.close()
@@ -101,6 +99,10 @@ local Installer = {} do
     end
 
     function Installer.install(path)
+        if fs.exists(path) then
+            fs.delete(path)
+        end
+
         local commit = GithubAPI.listCommits()[1]
 
         print("Installing commit ".. commit.sha)
@@ -117,6 +119,7 @@ end
 local function input(text, ...)
     clear()
     print(("\n%s "):format(text))
+    sleep(0.1)
     return read(...)
 end
 
@@ -237,8 +240,8 @@ return function(repositoryBranch)
         end
     end
 
-    if choiceBoolean("> Would you like to use a Github API token to avoid ratelimiting?") then
-        GithubAPI.Token = input("Github API Token", "*")
+    if choiceBoolean("> Would you like to use a Github Personal Access Token to avoid ratelimiting?") then
+        GithubAPI.Token = input("Github Personal Access Token Token", "*")
     end
 
     local installStart = os.clock()
@@ -250,8 +253,9 @@ return function(repositoryBranch)
 
     GithubAPI.Branch = repositoryBranch
 
-    for _,path in ipairs(installPaths) do
-        Installer.install(path)
+    Installer.install(installPaths[1])
+    for i = 2, #installPaths do
+        fs.copy(installPaths[1], installPaths[i])
     end
 
     print(("\nInstallation finished in %d seconds"):format(os.clock() - installStart))

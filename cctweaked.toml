@@ -11,6 +11,9 @@ property = true
 [_CC_DEFAULT_SETTINGS]
 property = true
 
+[[sleep.args]]
+type = "any"
+
 [[write.args]]
 type = "any"
 

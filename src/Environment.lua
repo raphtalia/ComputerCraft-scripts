@@ -70,7 +70,7 @@ function Environment.require(path)
 
         local ok, e = loadstring(file:readAll())
         if ok then
-            local func = setfenv(ok, env)
+            local func = setfenv(ok, Environment)
 
             file:close()
             local module = func()
@@ -79,6 +79,15 @@ function Environment.require(path)
         else
             error(("\n%s\n%s"):format(path, e))
         end
+    end
+end
+
+-- TODO: More long-term replacement for newproxy
+function Environment.newproxy(metatable)
+    if metatable then
+        return setmetatable({}, {})
+    else
+        return {}
     end
 end
 

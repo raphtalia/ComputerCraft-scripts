@@ -83,7 +83,7 @@ return function()
     local installPaths = {}
 
     local installChoice = choiceOptions(
-        "A disk drive with a floppy disk was detected, where would you like to install to?",
+        "> A disk drive with a floppy disk was detected, where would you like to install to?",
         {
             {NUMBERS[1], "Computer"},
             {NUMBERS[2], "Floppy disk"},
@@ -105,12 +105,13 @@ return function()
         end
 
         table.insert(installPaths, options[choiceOptions(
-            "Which floppy disk would you like to use?",
+            "> Which floppy disk would you like to use?",
             options
         )][2])
     end
 
+    print("\nInstalling to")
     for _,path in ipairs(installPaths) do
-        print(path)
+        print("\n".. path)
     end
 end

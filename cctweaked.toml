@@ -5,19 +5,19 @@
 base = "lua51"
 name = "cctweaked"
 
-[globals._HOST]
+[_HOST]
 property = true
 
-[globals._CC_DEFAULT_SETTINGS]
+[_CC_DEFAULT_SETTINGS]
 property = true
 
-[[globals.write.args]]
+[[write.args]]
 type = "any"
 
-[[globals.printError.args]]
+[[printError.args]]
 type = "any"
 
-[[globals.read.args]]
+[[read.args]]
 type = "any"
 
 [colors.white]

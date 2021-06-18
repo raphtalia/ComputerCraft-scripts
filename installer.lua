@@ -127,6 +127,9 @@ return function()
                     table.insert(installPaths, floppyDiskPath)
                     break
                 end
+            else
+                table.insert(installPaths, floppyDiskPath)
+                break
             end
         end
     end

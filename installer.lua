@@ -11,16 +11,12 @@
 ]]
 
 local NUMBERS = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"}
---[[
-print("a")
 
 local Base64 = {} do
     function Base64.decode()
         
     end
 end
-
-print("b")
 
 local GithubAPI = {
     RepositoryUrl = "https://api.github.com/repos/raphtalia/ComputerCraft-Scripts",
@@ -67,24 +63,17 @@ local GithubAPI = {
         return get("/git/blos/".. sha)
     end
 end
-]]
-
-print("c")
 
 local function clear()
     term.clear()
     term.setCursorPos(0, 0)
 end
 
-print("d")
-
 local function input(text, ...)
     clear()
     print(("\n%s "):format(text))
     return read(...)
 end
-
-print("e")
 
 local function choiceBoolean(text, trueOption, falseOption)
     clear()
@@ -101,8 +90,6 @@ local function choiceBoolean(text, trueOption, falseOption)
         end
     end
 end
-
-print("f")
 
 local function choiceOptions(text, options)
     local keyedOptions = {}
@@ -132,8 +119,6 @@ local function choiceOptions(text, options)
     end
 end
 
-print("g")
-
 local function getDiskDrives()
     local peripherals = {
         left = peripheral.wrap("left"),
@@ -154,8 +139,6 @@ local function getDiskDrives()
     return diskDrives
 end
 
-print("h")
-
 local function install(path)
     local commit = GithubAPI.listCommits()[1]
     for i,v in pairs(commit) do
@@ -163,12 +146,8 @@ local function install(path)
     end
 end
 
-print("i")
-
 return function(repositoryBranch)
     local installPaths = {}
-
-    print(1)
 
     local installChoice = choiceOptions(
         "> A disk drive with a floppy disk was detected, where would you like to install to?",
@@ -179,13 +158,9 @@ return function(repositoryBranch)
         }
     )
 
-    print(2)
-
     if installChoice == 1 or installChoice == 2 then
         installPaths = {"/rom"}
     end
-
-    print(3)
 
     if installChoice == 2 or installChoice == 3 then
         local options = {}
@@ -214,13 +189,9 @@ return function(repositoryBranch)
         end
     end
 
-    print(4)
-
     if choiceBoolean("> Would you like to use a Github API token to avoid ratelimiting?") then
         GithubAPI.Token = input("Github API Token", "*")
     end
-
-    print(5)
 
     clear()
     print("\nInstalling to")
@@ -228,13 +199,9 @@ return function(repositoryBranch)
         print("\n".. path)
     end
 
-    print(6)
-
     GithubAPI.Branch = repositoryBranch
 
     for _,path in ipairs(installPaths) do
         install(path)
     end
-
-    print(7)
 end

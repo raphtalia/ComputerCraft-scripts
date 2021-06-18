@@ -215,7 +215,7 @@ return function(repositoryBranch)
         installChoice = 1
     end
 
-    if installChoice == 1 or installChoice == 2 then
+    if installChoice == 1 or installChoice == 3 then
         installPaths = {"/.raphtalia"}
     end
 
@@ -244,7 +244,7 @@ return function(repositoryBranch)
         end
     end
 
-    if choiceBoolean("> Would you like to use a Github Personal Access Token to avoid ratelimiting?") then
+    if choiceBoolean("> Would you like to use a Github Personal Access Token for higher ratelimits??") then
         GithubAPI.Token = input("Github Personal Access Token", "*")
     end
 
@@ -264,6 +264,11 @@ return function(repositoryBranch)
             local path = installPaths[i]
             print("\nCopying to ".. path)
             fs.copy(installPaths[1], path)
+        end
+
+        fs.copy(installPaths[1].. "/src/startup.lua", fs.getDir(installPaths[1]))
+        for i = 2, #installPaths do
+            fs.copy(installPaths[1].. "/src/startup.lua", fs.getDir(installPaths[i]))
         end
 
         print(("\nInstallation finished in %d seconds"):format(os.clock() - installStart))

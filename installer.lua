@@ -142,14 +142,15 @@ local GithubAPI = {
             i = i + 1
         end
 
-        local response = http.get(
+        local response, e = http.get(
             url,
             {
                 Authorization = "Basic ".. GithubAPI.Token
             }
         )
-
-        print(response.getResponseCode(), response)
+        if not response then
+            error(e)
+        end
 
         return textutils.unserializeJSON(response:readAll())
     end

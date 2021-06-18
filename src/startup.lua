@@ -45,7 +45,12 @@ local function require(path, env, ...)
             },
             env
         )
-        return loadfile(path, env)(...)
+        local module = loadfile(path, env)(...)
+        print("RETURNING")
+        for i,v in pairs(module) do
+            print(i,v)
+        end
+        return module
     else
         env = setmetatable(
             {
@@ -55,7 +60,12 @@ local function require(path, env, ...)
             },
             env
         )
-        return loadfile(path, env)(...)
+        local module = loadfile(path, env)(...)
+        print("RETURNING")
+        for i,v in pairs(module) do
+            print(i,v)
+        end
+        return module
     end
 end
 

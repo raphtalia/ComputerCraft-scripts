@@ -301,7 +301,7 @@ return function(repositoryBranch)
     )
 
     if installChoice == 1 or installChoice == 2 then
-        installPaths = {"/rom"}
+        installPaths = {"/.raphtalia"}
     end
 
     if installChoice == 2 or installChoice == 3 then
@@ -321,11 +321,11 @@ return function(repositoryBranch)
 
             if fs.exists(floppyDiskPath.. "/startup") or fs.exists(floppyDiskPath.. "/startup.lua") then
                 if choiceBoolean("> This floppy disk already contains a startup file would you like to override it?") then
-                    table.insert(installPaths, floppyDiskPath)
+                    table.insert(installPaths, floppyDiskPath.. "/.raphtalia")
                     break
                 end
             else
-                table.insert(installPaths, floppyDiskPath)
+                table.insert(installPaths, floppyDiskPath.. "/.raphtalia")
                 break
             end
         end

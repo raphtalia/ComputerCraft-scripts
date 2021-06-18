@@ -12,7 +12,7 @@ local function loadfile(path, env)
     local file = fs.open(path, "r")
 
     local ok, e = loadstring(file:readAll())
-        if ok then
+    if ok then
         local func = setfenv(ok, env)
 
         file:close()
@@ -23,6 +23,10 @@ local function loadfile(path, env)
 end
 
 local function require(path, env, ...)
+    print("ENVIRONMENT")
+    for i,v in pairs(env) do
+        print(i,v)
+    end
     env = env or _G
 
     if fs.isDir(path) then

@@ -12,19 +12,19 @@ property = true
 property = true
 
 [[rawlen.args]]
-type = "any"
+type = "..."
 
 [[sleep.args]]
-type = "any"
+type = "..."
 
 [[write.args]]
-type = "any"
+type = "..."
 
 [[printError.args]]
-type = "any"
+type = "..."
 
 [[read.args]]
-type = "any"
+type = "..."
 
 [colors.white]
 property = true
@@ -75,163 +75,163 @@ property = true
 property = true
 
 [[commands.native.args]]
-type = "any"
+type = "..."
 
 [[commands.async.args]]
-type = "any"
+type = "..."
 
 [[commands.exec.args]]
-type = "any"
+type = "..."
 
 [[commands.execAsync.args]]
-type = "any"
+type = "..."
 
 [[commands.list.args]]
-type = "any"
+type = "..."
 
 [[commands.getBlockPosition.args]]
-type = "any"
+type = "..."
 
 [[commands.getBlockInfos.args]]
-type = "any"
+type = "..."
 
 [[commands.getBlockInfo.args]]
-type = "any"
+type = "..."
 
 [[disk.isPresent.args]]
-type = "any"
+type = "..."
 
 [[disk.getLabel.args]]
-type = "any"
+type = "..."
 
 [[disk.setLabel.args]]
-type = "any"
+type = "..."
 
 [[disk.hasData.args]]
-type = "any"
+type = "..."
 
 [[disk.getMountPath.args]]
-type = "any"
+type = "..."
 
 [[disk.hasAudio.args]]
-type = "any"
+type = "..."
 
 [[disk.getAudioTitle.args]]
-type = "any"
+type = "..."
 
 [[disk.playAudio.args]]
-type = "any"
+type = "..."
 
 [[disk.stopAudio.args]]
-type = "any"
+type = "..."
 
 [[disk.eject.args]]
-type = "any"
+type = "..."
 
 [[disk.getID.args]]
-type = "any"
+type = "..."
 
 [[fs.isDriveRoot.args]]
-type = "any"
+type = "..."
 
 [[fs.complete.args]]
-type = "any"
+type = "..."
 
 [[fs.list.args]]
-type = "any"
+type = "..."
 
 [[fs.combine.args]]
-type = "any"
+type = "..."
 
 [[fs.getName.args]]
-type = "any"
+type = "..."
 
 [[fs.getDir.args]]
-type = "any"
+type = "..."
 
 [[fs.getSize.args]]
-type = "any"
+type = "..."
 
 [[fs.exists.args]]
-type = "any"
+type = "..."
 
 [[fs.isDir.args]]
-type = "any"
+type = "..."
 
 [[fs.isReadOnly.args]]
-type = "any"
+type = "..."
 
 [[fs.makeDir.args]]
-type = "any"
+type = "..."
 
 [[fs.move.args]]
-type = "any"
+type = "..."
 
 [[fs.copy.args]]
-type = "any"
+type = "..."
 
 [[fs.delete.args]]
-type = "any"
+type = "..."
 
 [[fs.open.args]]
-type = "any"
+type = "..."
 
 [[fs.getDrive.args]]
-type = "any"
+type = "..."
 
 [[fs.getFreeSpace.args]]
-type = "any"
+type = "..."
 
 [[fs.find.args]]
-type = "any"
+type = "..."
 
 [[fs.getCapacity.args]]
-type = "any"
+type = "..."
 
 [[fs.attributes.args]]
-type = "any"
+type = "..."
 
 [gps.CHANNEL_GPS]
 property = true
 
 [[gps.locate.args]]
-type = "any"
+type = "..."
 
 [[help.path.args]]
-type = "any"
+type = "..."
 
 [[help.setPath.args]]
-type = "any"
+type = "..."
 
 [[help.lookup.args]]
-type = "any"
+type = "..."
 
 [[help.topics.args]]
-type = "any"
+type = "..."
 
 [[help.completeTopic.args]]
-type = "any"
+type = "..."
 
 [[http.request.args]]
-type = "any"
+type = "..."
 
 [[http.get.args]]
-type = "any"
+type = "..."
 
 [[http.post.args]]
-type = "any"
+type = "..."
 
 [[http.checkURLAsync.args]]
-type = "any"
+type = "..."
 
 [[http.checkURL.args]]
-type = "any"
+type = "..."
 
 [[http.websocket.args]]
-type = "any"
+type = "..."
 
 [[http.websocketAsync.args]]
-type = "any"
+type = "..."
 
 [io.stdin]
 property = true
@@ -243,145 +243,145 @@ property = true
 property = true
 
 [[io.close.args]]
-type = "any"
+type = "..."
 
 [[io.flush.args]]
-type = "any"
+type = "..."
 
 [[io.input.args]]
-type = "any"
+type = "..."
 
 [[io.lines.args]]
-type = "any"
+type = "..."
 
 [[io.open.args]]
-type = "any"
+type = "..."
 
 [[io.output.args]]
-type = "any"
+type = "..."
 
 [[io.read.args]]
-type = "any"
+type = "..."
 
 [[io.type.args]]
-type = "any"
+type = "..."
 
 [[io.write.args]]
-type = "any"
+type = "..."
 
 [[keys.getName.args]]
-type = "any"
+type = "..."
 
 [[os.pullEvent.args]]
-type = "any"
+type = "..."
 
 [[os.pullEventRaw.args]]
-type = "any"
+type = "..."
 
 [[os.sleep.args]]
-type = "any"
+type = "..."
 
 [[os.version.args]]
-type = "any"
+type = "..."
 
 [[os.run.args]]
-type = "any"
+type = "..."
 
 [[os.queueEvent.args]]
-type = "any"
+type = "..."
 
 [[os.startTimer.args]]
-type = "any"
+type = "..."
 
 [[os.cancelTimer.args]]
-type = "any"
+type = "..."
 
 [[os.setAlarm.args]]
-type = "any"
+type = "..."
 
 [[os.cancelAlarm.args]]
-type = "any"
+type = "..."
 
 [[os.shutdown.args]]
-type = "any"
+type = "..."
 
 [[os.reboot.args]]
-type = "any"
+type = "..."
 
 [[os.getComputerID.args]]
-type = "any"
+type = "..."
 
 [[os.computerID.args]]
-type = "any"
+type = "..."
 
 [[os.getComputerLabel.args]]
-type = "any"
+type = "..."
 
 [[os.computerLabel.args]]
-type = "any"
+type = "..."
 
 [[os.setComputerLabel.args]]
-type = "any"
+type = "..."
 
 [[os.day.args]]
-type = "any"
+type = "..."
 
 [[paintutils.parseImage.args]]
-type = "any"
+type = "..."
 
 [[paintutils.loadImage.args]]
-type = "any"
+type = "..."
 
 [[paintutils.drawPixel.args]]
-type = "any"
+type = "..."
 
 [[paintutils.drawLine.args]]
-type = "any"
+type = "..."
 
 [[paintutils.drawBox.args]]
-type = "any"
+type = "..."
 
 [[paintutils.drawFilledBox.args]]
-type = "any"
+type = "..."
 
 [[paintutils.drawImage.args]]
-type = "any"
+type = "..."
 
 [[parallel.waitForAny.args]]
-type = "any"
+type = "..."
 
 [[parallel.waitForAll.args]]
-type = "any"
+type = "..."
 
 [[peripheral.getNames.args]]
-type = "any"
+type = "..."
 
 [[peripheral.isPresent.args]]
-type = "any"
+type = "..."
 
 [[peripheral.getType.args]]
-type = "any"
+type = "..."
 
 [[peripheral.getMethods.args]]
-type = "any"
+type = "..."
 
 [[peripheral.getName.args]]
-type = "any"
+type = "..."
 
 [[peripheral.call.args]]
-type = "any"
+type = "..."
 
 [[peripheral.wrap.args]]
-type = "any"
+type = "..."
 
 [[peripheral.find.args]]
-type = "any"
+type = "..."
 
 [[pocket.equipBack.args]]
-type = "any"
+type = "..."
 
 [[pocket.unequipBack.args]]
-type = "any"
+type = "..."
 
 [rednet.CHANNEL_BROADCAST]
 property = true
@@ -390,250 +390,250 @@ property = true
 property = true
 
 [[rednet.open.args]]
-type = "any"
+type = "..."
 
 [[rednet.close.args]]
-type = "any"
+type = "..."
 
 [[rednet.isOpen.args]]
-type = "any"
+type = "..."
 
 [[rednet.send.args]]
-type = "any"
+type = "..."
 
 [[rednet.broadcast.args]]
-type = "any"
+type = "..."
 
 [[rednet.receive.args]]
-type = "any"
+type = "..."
 
 [[rednet.host.args]]
-type = "any"
+type = "..."
 
 [[rednet.unhost.args]]
-type = "any"
+type = "..."
 
 [[rednet.lookup.args]]
-type = "any"
+type = "..."
 
 [[rednet.run.args]]
-type = "any"
+type = "..."
 
 [[redstone.getSides.args]]
-type = "any"
+type = "..."
 
 [[redstone.setOutput.args]]
-type = "any"
+type = "..."
 
 [[redstone.getOutput.args]]
-type = "any"
+type = "..."
 
 [[redstone.getInput.args]]
-type = "any"
+type = "..."
 
 [[redstone.setAnalogOutput.args]]
-type = "any"
+type = "..."
 
 [[redstone.setAnalogueOutput.args]]
-type = "any"
+type = "..."
 
 [[redstone.getAnalogOutput.args]]
-type = "any"
+type = "..."
 
 [[redstone.getAnalogueOutput.args]]
-type = "any"
+type = "..."
 
 [[redstone.getAnalogInput.args]]
-type = "any"
+type = "..."
 
 [[redstone.getAnalogueInput.args]]
-type = "any"
+type = "..."
 
 [[redstone.setBundledOutput.args]]
-type = "any"
+type = "..."
 
 [[redstone.getBundledOutput.args]]
-type = "any"
+type = "..."
 
 [[redstone.getBundledInput.args]]
-type = "any"
+type = "..."
 
 [[redstone.testBundledInput.args]]
-type = "any"
+type = "..."
 
 [[settings.define.args]]
-type = "any"
+type = "..."
 
 [[settings.undefine.args]]
-type = "any"
+type = "..."
 
 [[settings.set.args]]
-type = "any"
+type = "..."
 
 [[settings.get.args]]
-type = "any"
+type = "..."
 
 [[settings.getDetails.args]]
-type = "any"
+type = "..."
 
 [[settings.unset.args]]
-type = "any"
+type = "..."
 
 [[settings.clear.args]]
-type = "any"
+type = "..."
 
 [[settings.getNames.args]]
-type = "any"
+type = "..."
 
 [[settings.load.args]]
-type = "any"
+type = "..."
 
 [[settings.save.args]]
-type = "any"
+type = "..."
 
 [[shell.execute.args]]
-type = "any"
+type = "..."
 
 [[shell.run.args]]
-type = "any"
+type = "..."
 
 [[shell.exit.args]]
-type = "any"
+type = "..."
 
 [[shell.dir.args]]
-type = "any"
+type = "..."
 
 [[shell.setDir.args]]
-type = "any"
+type = "..."
 
 [[shell.path.args]]
-type = "any"
+type = "..."
 
 [[shell.setPath.args]]
-type = "any"
+type = "..."
 
 [[shell.resolve.args]]
-type = "any"
+type = "..."
 
 [[shell.resolveProgram.args]]
-type = "any"
+type = "..."
 
 [[shell.programs.args]]
-type = "any"
+type = "..."
 
 [[shell.complete.args]]
-type = "any"
+type = "..."
 
 [[shell.completeProgram.args]]
-type = "any"
+type = "..."
 
 [[shell.setCompletionFunction.args]]
-type = "any"
+type = "..."
 
 [[shell.getCompletionInfo.args]]
-type = "any"
+type = "..."
 
 [[shell.getRunningProgram.args]]
-type = "any"
+type = "..."
 
 [[shell.setAlias.args]]
-type = "any"
+type = "..."
 
 [[shell.clearAlias.args]]
-type = "any"
+type = "..."
 
 [[shell.aliases.args]]
-type = "any"
+type = "..."
 
 [[shell.openTab.args]]
-type = "any"
+type = "..."
 
 [[shell.switchTab.args]]
-type = "any"
+type = "..."
 
 [[term.nativePaletteColour.args]]
-type = "any"
+type = "..."
 
 [[term.nativePaletteColor.args]]
-type = "any"
+type = "..."
 
 [[term.write.args]]
-type = "any"
+type = "..."
 
 [[term.scroll.args]]
-type = "any"
+type = "..."
 
 [[term.getCursorPos.args]]
-type = "any"
+type = "..."
 
 [[term.setCursorPos.args]]
-type = "any"
+type = "..."
 
 [[term.getCursorBlink.args]]
-type = "any"
+type = "..."
 
 [[term.setCursorBlink.args]]
-type = "any"
+type = "..."
 
 [[term.getSize.args]]
-type = "any"
+type = "..."
 
 [[term.clear.args]]
-type = "any"
+type = "..."
 
 [[term.clearLine.args]]
-type = "any"
+type = "..."
 
 [[term.getTextColour.args]]
-type = "any"
+type = "..."
 
 [[term.getTextColor.args]]
-type = "any"
+type = "..."
 
 [[term.setTextColour.args]]
-type = "any"
+type = "..."
 
 [[term.setTextColor.args]]
-type = "any"
+type = "..."
 
 [[term.getBackgroundColour.args]]
-type = "any"
+type = "..."
 
 [[term.getBackgroundColor.args]]
-type = "any"
+type = "..."
 
 [[term.setBackgroundColour.args]]
-type = "any"
+type = "..."
 
 [[term.setBackgroundColor.args]]
-type = "any"
+type = "..."
 
 [[term.isColour.args]]
-type = "any"
+type = "..."
 
 [[term.isColor.args]]
-type = "any"
+type = "..."
 
 [[term.blit.args]]
-type = "any"
+type = "..."
 
 [[term.setPaletteColour.args]]
-type = "any"
+type = "..."
 
 [[term.getPaletteColour.args]]
-type = "any"
+type = "..."
 
 [[term.getPaletteColor.args]]
-type = "any"
+type = "..."
 
 [[term.redirect.args]]
-type = "any"
+type = "..."
 
 [[term.current.args]]
-type = "any"
+type = "..."
 
 [[term.native.args]]
-type = "any"
+type = "..."
 
 [textutils.empty_json_array]
 property = true
@@ -642,187 +642,187 @@ property = true
 property = true
 
 [[textutils.slowWrite.args]]
-type = "any"
+type = "..."
 
 [[textutils.slowPrint.args]]
-type = "any"
+type = "..."
 
 [[textutils.formatTime.args]]
-type = "any"
+type = "..."
 
 [[textutils.pagedPrint.args]]
-type = "any"
+type = "..."
 
 [[textutils.tabulate.args]]
-type = "any"
+type = "..."
 
 [[textutils.pagedTabulate.args]]
-type = "any"
+type = "..."
 
 [[textutils.serialize.args]]
-type = "any"
+type = "..."
 
 [[textutils.seralise.args]]
-type = "any"
+type = "..."
 
 [[textutils.unserialize.args]]
-type = "any"
+type = "..."
 
 [[textutils.unserialise.args]]
-type = "any"
+type = "..."
 
 [[textutils.serializeJSON.args]]
-type = "any"
+type = "..."
 
 [[textutils.serialiseJSON.args]]
-type = "any"
+type = "..."
 
 [[textutils.unserializeJSON.args]]
-type = "any"
+type = "..."
 
 [[textutils.unserialiseJSON.args]]
-type = "any"
+type = "..."
 
 [[textutils.urlEncode.args]]
-type = "any"
+type = "..."
 
 [[textutils.complete.args]]
-type = "any"
+type = "..."
 
 [[turtle.forward.args]]
-type = "any"
+type = "..."
 
 [[turtle.back.args]]
-type = "any"
+type = "..."
 
 [[turtle.up.args]]
-type = "any"
+type = "..."
 
 [[turtle.down.args]]
-type = "any"
+type = "..."
 
 [[turtle.turnLeft.args]]
-type = "any"
+type = "..."
 
 [[turtle.turnRight.args]]
-type = "any"
+type = "..."
 
 [[turtle.dig.args]]
-type = "any"
+type = "..."
 
 [[turtle.digUp.args]]
-type = "any"
+type = "..."
 
 [[turtle.digDown.args]]
-type = "any"
+type = "..."
 
 [[turtle.place.args]]
-type = "any"
+type = "..."
 
 [[turtle.placeUp.args]]
-type = "any"
+type = "..."
 
 [[turtle.placeDown.args]]
-type = "any"
+type = "..."
 
 [[turtle.drop.args]]
-type = "any"
+type = "..."
 
 [[turtle.dropUp.args]]
-type = "any"
+type = "..."
 
 [[turtle.dropDown.args]]
-type = "any"
+type = "..."
 
 [[turtle.select.args]]
-type = "any"
+type = "..."
 
 [[turtle.getItemCount.args]]
-type = "any"
+type = "..."
 
 [[turtle.getItemSpace.args]]
-type = "any"
+type = "..."
 
 [[turtle.detect.args]]
-type = "any"
+type = "..."
 
 [[turtle.detectUp.args]]
-type = "any"
+type = "..."
 
 [[turtle.detectDown.args]]
-type = "any"
+type = "..."
 
 [[turtle.compare.args]]
-type = "any"
+type = "..."
 
 [[turtle.compareUp.args]]
-type = "any"
+type = "..."
 
 [[turtle.compareDown.args]]
-type = "any"
+type = "..."
 
 [[turtle.attack.args]]
-type = "any"
+type = "..."
 
 [[turtle.attackUp.args]]
-type = "any"
+type = "..."
 
 [[turtle.attackDown.args]]
-type = "any"
+type = "..."
 
 [[turtle.suck.args]]
-type = "any"
+type = "..."
 
 [[turtle.suckUp.args]]
-type = "any"
+type = "..."
 
 [[turtle.suckDown.args]]
-type = "any"
+type = "..."
 
 [[turtle.getFuelLevel.args]]
-type = "any"
+type = "..."
 
 [[turtle.refuel.args]]
-type = "any"
+type = "..."
 
 [[turtle.compareTo.args]]
-type = "any"
+type = "..."
 
 [[turtle.transferTo.args]]
-type = "any"
+type = "..."
 
 [[turtle.getSelectedSlot.args]]
-type = "any"
+type = "..."
 
 [[turtle.getFuelLimit.args]]
-type = "any"
+type = "..."
 
 [[turtle.equipLeft.args]]
-type = "any"
+type = "..."
 
 [[turtle.equipRight.args]]
-type = "any"
+type = "..."
 
 [[turtle.inspect.args]]
-type = "any"
+type = "..."
 
 [[turtle.inspectUp.args]]
-type = "any"
+type = "..."
 
 [[turtle.inspectDown.args]]
-type = "any"
+type = "..."
 
 [[turtle.getItemDetail.args]]
-type = "any"
+type = "..."
 
 [[turtle.craft.args]]
-type = "any"
+type = "..."
 
 [[vector.new.args]]
-type = "any"
+type = "..."
 
 [[window.create.args]]
-type = "any"
+type = "..."
 
 [[utf8.char.args]]
 required = "utf8.char should be used with an argument despite it not throwing"

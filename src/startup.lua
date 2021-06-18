@@ -1,5 +1,5 @@
 local ROOT_PATH = fs.getDir(shell.getRunningProgram())
-local SRC_PATH = ROOT_PATH.. "/.raphtalia/src"
+local SRC_PATH = ROOT_PATH.. "/.raphtalia/src/Core"
 
 local LIBRARIES_PATH = SRC_PATH.. "/Libraries"
 local SERVICES_PATH = SRC_PATH.. "/Services"

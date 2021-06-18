@@ -266,9 +266,9 @@ return function(repositoryBranch)
             fs.copy(installPaths[1], path)
         end
 
-        fs.copy(installPaths[1].. "/src/startup.lua", fs.getDir(installPaths[1]))
+        fs.copy(installPaths[1].. "/src/startup.lua", fs.getDir(installPaths[1]).. "/startp.lua")
         for i = 2, #installPaths do
-            fs.copy(installPaths[1].. "/src/startup.lua", fs.getDir(installPaths[i]))
+            fs.copy(installPaths[1].. "/src/startup.lua", fs.getDir(installPaths[i]).. "/startp.lua")
         end
 
         print(("\nInstallation finished in %d seconds"):format(os.clock() - installStart))

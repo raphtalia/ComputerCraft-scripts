@@ -12,13 +12,20 @@
 
 local NUMBERS = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"}
 
+local function clear()
+    term.clear()
+    term.setCursorPos(0, 0)
+end
+
 local function input(text, ...)
+    clear()
     print("\n".. text)
     return read(...)
 end
 
 local function choiceBoolean(text, trueOption, falseOption)
     while true do
+        clear()
         print(("\n%s\n[Y] %s\n[N] %s"):format(text, trueOption, falseOption))
 
         local eventData = {os.pullEvent("key")}
@@ -43,6 +50,7 @@ local function choiceOptions(text, options)
     end
 
     while true do
+        clear()
         print("\n".. text)
 
         for key, option in pairs(keyedOptions) do
@@ -110,6 +118,7 @@ return function()
         )][2])
     end
 
+    clear()
     print("\nInstalling to")
     for _,path in ipairs(installPaths) do
         print("\n".. path)

@@ -186,15 +186,27 @@ end
 
 return function(repositoryBranch)
     local installPaths = {}
+    local diskDrives = {}
+    local installChoice
 
-    local installChoice = choiceOptions(
-        "> A disk drive with a floppy disk was detected, where would you like to install to?",
-        {
-            {NUMBERS[1], "Computer"},
-            {NUMBERS[2], "Floppy disk"},
-            {NUMBERS[3], "Both"},
-        }
-    )
+    for _,diskDrive in ipairs(getDiskDrives()) do
+        if diskDrive.hasData() then
+            table.insert(diskDrives, diskDrive)
+        end
+    end
+
+    if #diskDrives > 0 then
+        installChoice = choiceOptions(
+            "> A disk drive with a floppy disk was detected, where would you like to install to?",
+            {
+                {NUMBERS[1], "Computer"},
+                {NUMBERS[2], "Floppy disk"},
+                {NUMBERS[3], "Both"},
+            }
+        )
+    else
+        installChoice = 1
+    end
 
     if installChoice == 1 or installChoice == 2 then
         installPaths = {"/.raphtalia"}
@@ -203,10 +215,8 @@ return function(repositoryBranch)
     if installChoice == 2 or installChoice == 3 then
         local options = {}
 
-        for _,diskDrive in ipairs(getDiskDrives()) do
-            if diskDrive.hasData() then
-                table.insert(options, {NUMBERS[#options + 1], diskDrive.getMountPath()})
-            end
+        for _,diskDrive in ipairs(diskDrives) do
+            table.insert(options, {NUMBERS[#options + 1], diskDrive.getMountPath()})
         end
 
         while true do

@@ -1,7 +1,7 @@
 return {
     Help = "",
     Flags = {},
-    Handle = function()
+    Handle = function(command)
         
     end
 }

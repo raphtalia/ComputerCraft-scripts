@@ -21,4 +21,17 @@ function StringUtils.split(inputstr, sep)
     return t
 end
 
+function StringUtils.chars(str)
+    local i = 1
+    return function()
+        local char = str:sub(i, i)
+        if char ~= "" then
+            i = i + 1
+            return char
+        else
+            return nil
+        end
+    end
+end
+
 return StringUtils

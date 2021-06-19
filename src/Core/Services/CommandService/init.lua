@@ -26,8 +26,22 @@ function CommandService.runCommand(text)
     local command = arguments[1]
     arguments = {select(2, unpack(arguments))}
 
+    local flags = {}
+    for i, argument in pairs(arguments) do
+        if argument:sub(1, 2) == "--" then
+            flags[argument:sub(3)] = true
+            arguments[i] = nil
+        elseif argument:sub(1, 1) == "-" then
+            for char in StringUtils.chars(argument:sub(2)) do
+                flags[char] = true
+            end
+            arguments[i] = nil
+        end
+    end
+    table.sort(arguments)
+
     if CommandService.Commands[command] then
-        CommandService.Commands[command].Handle(arguments)
+        CommandService.Commands[command].Handle(Instance.new("Command", arguments, flags))
     else
         print("Invalid command: ".. (command or "nil"))
     end
@@ -36,12 +50,6 @@ end
 function CommandService.registerCommand(commandName, handler)
     CommandService.Commands[commandName] = handler
 end
-
---[[
-for i,v in ipairs(fs.list(script.Directory)) do
-    print(i,v)
-end
-]]
 
 local path = Instance.new("Path", script.Directory)
 for _,command in ipairs(path.Commands:GetChildren()) do

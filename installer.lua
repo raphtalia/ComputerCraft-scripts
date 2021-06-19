@@ -9,7 +9,7 @@
     OR
     pastebin run kHWhQ5AT
 ]]
-
+local MAX_RETRIES = 5
 local NUMBERS = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"}
 
 local GithubAPI = {
@@ -32,17 +32,26 @@ local GithubAPI = {
             i = i + 1
         end
 
-        local response, e = http.get(
-            url,
-            {
-                ["accept"] = "application/".. format,
-                ["authorization"] = "Basic ".. GithubAPI.Token,
-                ["user-agent"] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.106 Safari/537.36 Edg/91.0.864.53",
+        local response
+        local attempts = 0
+        repeat
+            response = http.get(
+                url,
+                {
+                    ["accept"] = "application/".. format,
+                    ["authorization"] = "Basic ".. GithubAPI.Token,
+                    ["user-agent"] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.106 Safari/537.36 Edg/91.0.864.53",
 
-            }
-        )
+                }
+            )
+            if not response then
+                attempts = attempts + 1
+                print(("\nRequest to %s failed\n%s\nStalling for 10 seconds then retrying"):format(url, e))
+                sleep(10)
+            end
+        until response or attempts > MAX_RETRIES
         if not response then
-            error(("\nRequest to %s failed\n%s"):format(url, e))
+            error(("Request failed after %d attempts"):format(MAX_RETRIES))
         end
 
         return response:readAll()
@@ -254,7 +263,7 @@ return function(repositoryBranch)
             )][2]
 
             if fs.exists(floppyDiskPath.. "/startup") or fs.exists(floppyDiskPath.. "/startup.lua") then
-                if choiceBoolean("> This floppy disk already contains a startup file would you like to override it?") then
+                if choiceBoolean("> This floppy disk already contains a startup file would you like to overwrite it?") then
                     table.insert(installPaths, floppyDiskPath.. "/.raphtalia")
                     break
                 end

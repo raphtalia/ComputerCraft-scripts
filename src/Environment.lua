@@ -82,15 +82,6 @@ function Environment.require(path)
     end
 end
 
--- TODO: More long-term replacement for newproxy
-function Environment.newproxy(metatable)
-    if metatable then
-        return setmetatable({}, {})
-    else
-        return {}
-    end
-end
-
 Environment._G = Environment
 return {
     Environment = Environment,

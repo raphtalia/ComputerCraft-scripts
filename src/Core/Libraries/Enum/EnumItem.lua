@@ -1,34 +1,31 @@
 local EnumItem = {}
+function meta:__tostring()
+    return ("Enum.%s.%s"):format(tostring(self.Enum), self.Name)
+end
 
-function EnumItem.new(name, value, type)
-    local enumItem = newproxy(true)
-    local meta = getmetatable(enumItem)
+function meta:__index(i)
+    local v = props[i]
 
-    local typeName = tostring(type)
-    local props = {
-        Name = name,
-        Value = value,
-        EnumType = type,
-    }
-
-    meta.__metatable = "The metatable is locked"
-    meta.__tostring = function()
-        return ("Enum.%s.%s"):format(typeName, name)
+    if v then
+        return v
+    else
+        error(("%s is not a valid member of \"%s\""):format(i, tostring(enumItem)), 2)
     end
+end
 
-    function meta.__index(_, i)
-        local v = props[i]
+function meta:__newindex(i)
+    error(i.. " cannot be assigned to", 2)
+end
 
-        if v then
-            return v
-        else
-            error(("%s is not a valid member of \"%s\""):format(i, tostring(enumItem)), 2)
-        end
-    end
-
-    function meta.__newindex(_, i)
-        error(i.. " cannot be assigned to", 2)
-    end
+function EnumItem.new(name, value, enum)
+    local enumItem = setmetatable(
+        {
+            Name = name,
+            Value = value,
+            Enum = enum,
+        },
+        EnumItem
+    )
 
     return enumItem
 end

@@ -71,7 +71,7 @@ end
 
 for _,serviceName in ipairs(fs.list(SERVICES_PATH)) do
     print("Loading service ".. serviceName)
-    Modules[getFileName(libraryName)] = require(("%s/%s"):format(SERVICES_PATH, serviceName), Environment)
+    Modules[getFileName(serviceName)] = require(("%s/%s"):format(SERVICES_PATH, serviceName), Environment)
 end
 
 local parallelRequire = coroutine.wrap(require)

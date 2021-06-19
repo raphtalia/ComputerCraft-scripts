@@ -35,7 +35,8 @@ local GithubAPI = {
         local response
         local attempts = 0
         repeat
-            response = http.get(
+            local e
+            response, e = http.get(
                 url,
                 {
                     ["accept"] = "application/".. format,
@@ -46,8 +47,8 @@ local GithubAPI = {
             )
             if not response then
                 attempts = attempts + 1
-                print(("\nRequest to %s failed\n%s\nStalling for 10 seconds then retrying"):format(url, e))
-                sleep(10)
+                print(("\nRequest to %s failed\n%s\nStalling for 30 seconds then retrying (%d)"):format(url, e, attempts))
+                sleep(30)
             end
         until response or attempts > MAX_RETRIES
         if not response then

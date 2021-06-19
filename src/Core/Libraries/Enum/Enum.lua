@@ -15,10 +15,6 @@ function Enum:__index(i)
     end
 end
 
-function Enum:__newindex(i)
-    error(i.. " cannot be assigned to", 2)
-end
-
 function Enum.new(enumName, enumItemsList)
     local enum = setmetatable(
         {

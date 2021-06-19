@@ -7,6 +7,7 @@ local SERVICES_PATH = CORE_PATH.. "/Services"
 local HANDLERS_PATH = CORE_PATH.. "/Handlers"
 
 local Environment
+local Modules
 
 local function loadfile(path, env)
     local file = fs.open(path, "r")
@@ -55,16 +56,22 @@ local function require(path, env, ...)
     end
 end
 
-Environment = setmetatable(require(SRC_PATH.. "/Environment.lua"), {__index = _G})
+local function getFileName(name)
+    return name:match("(.+)%..+") or name
+end
+
+local envModule = setmetatable(require(SRC_PATH.. "/Environment.lua"), {__index = _G})
+Environment = envModule.Environment
+Modules = envModule.Modules
 
 for _,libraryName in ipairs(fs.list(LIBRARIES_PATH)) do
     print("Loading library ".. libraryName)
-    require(("%s/%s"):format(LIBRARIES_PATH, libraryName), Environment)
+    Modules[getFileName(libraryName)] = require(("%s/%s"):format(LIBRARIES_PATH, libraryName), Environment)
 end
 
 for _,serviceName in ipairs(fs.list(SERVICES_PATH)) do
     print("Loading service ".. serviceName)
-    require(("%s/%s"):format(SERVICES_PATH, serviceName), Environment)
+    Modules[getFileName(libraryName)] = require(("%s/%s"):format(SERVICES_PATH, serviceName), Environment)
 end
 
 local parallelRequire = coroutine.wrap(require)

@@ -92,4 +92,7 @@ function Environment.newproxy(metatable)
 end
 
 Environment._G = Environment
-return Environment
+return {
+    Environment = Environment,
+    Modules = Modules,
+}

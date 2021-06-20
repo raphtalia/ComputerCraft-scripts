@@ -11,4 +11,9 @@ function TermUtils.clearLine()
     term.setCursorPos(1, y)
 end
 
+function TermUtils.writeLine(text)
+    TermUtils.clearLine()
+    term.write(text)
+end
+
 return TermUtils

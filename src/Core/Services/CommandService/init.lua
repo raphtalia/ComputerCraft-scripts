@@ -43,7 +43,7 @@ function CommandService.runCommand(text)
     if CommandService.Commands[command] then
         CommandService.Commands[command].Handle(Instance.new("Command", arguments, flags))
     else
-        print("\nInvalid command: ".. (command or "nil"))
+        print("Invalid command: ".. (command or "nil"))
     end
 end
 

@@ -8,22 +8,50 @@ local function concat(...)
     return table.concat(args)
 end
 
-local LogService = {}
+local LogService = {
+    MessageOut = Instance.new("Signal")
+}
+
+local Logs = {}
 
 function LogService.print(...)
-    os.queueEvent("LogServiceOutput", "print", concat(...))
+    local log = {
+        Type = "print",
+        Message = concat(...),
+    }
+    LogService.MessageOut:Fire(log.Message, log.Type)
+    table.insert(Logs, log)
 end
 
 function LogService.warn(...)
-    os.queueEvent("LogServiceOutput", "warn", concat(...))
+    local log = {
+        Type = "warn",
+        Message = concat(...),
+    }
+    LogService.MessageOut:Fire(log.Message, log.Type)
+    table.insert(Logs, log)
 end
 
 function LogService.error(...)
-    os.queueEvent("LogServiceOutput", "error", concat(...))
+    local log = {
+        Type = "error",
+        Message = concat(...),
+    }
+    LogService.MessageOut:Fire(log.Message, log.Type)
+    table.insert(Logs, log)
 end
 
 function LogService.info(...)
-    os.queueEvent("LogServiceOutput", "info", concat(...))
+    local log = {
+        Type = "info",
+        Message = concat(...),
+    }
+    LogService.MessageOut:Fire(log.Message, log.Type)
+    table.insert(Logs, log)
+end
+
+function LogService.getLogHistory()
+    return {unpack(Logs)}
 end
 
 return LogService

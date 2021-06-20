@@ -52,7 +52,7 @@ local Environment = {
     load = load,
     rawget = rawget,
     loadstring = loadstring,
-    input = read,
+    read = read,
     colors = colors,
     setfenv = setfenv,
     dofile = dofile,
@@ -98,6 +98,22 @@ function Environment.require(path)
                 error(("\n[Error] Yielded for %s to load"):format(path))
             end
         end
+    end
+end
+
+function Environment.wait(n)
+    n = math.max(n or 0.05, 0.05)
+
+    local thread = coroutine.running()
+    local ParallelService = Environment.require("ParallelService")
+        if ParallelService then
+        ParallelService.delay(n, function()
+            print("RESUMING")
+            coroutine.resume(thread)
+        end)
+        coroutine.yield()
+    else
+        error("wait() cannot be used at this time")
     end
 end
 

@@ -23,7 +23,7 @@ function Signal:Wait()
     end)
     table.insert(self._connections, connection)
     repeat
-        sleep()
+        wait()
     until args
     return args
 end

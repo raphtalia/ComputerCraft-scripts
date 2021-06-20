@@ -1,4 +1,8 @@
+local TableUtils = require("TableUtils")
+
 local RunService = {}
+
+local BindedToRenderStep = {}
 
 function RunService:IsTurtle()
     if turtle then
@@ -29,6 +33,29 @@ function RunService:IsAdvanced()
         return true
     else
         return false
+    end
+end
+
+function RunService:BindToRenderStep(name, priority, callback)
+    BindedToRenderStep[name] = {
+        Priority = priority,
+        Callback = callback,
+    }
+end
+
+function RunService:UnbindFromRenderStep(name)
+    BindedToRenderStep[name] = nil
+end
+
+function RunService:_render()
+    local callbacks = {}
+    for _,callback in pairs(BindedToRenderStep) do
+        callbacks[callback.Priority] = callback.Callback
+    end
+    TableUtils.removeVoids(callbacks)
+
+    for _,callback in ipairs(callbacks) do
+        callback()
     end
 end
 

@@ -89,6 +89,12 @@ end
 
 parallel.waitForAll(unpack(Requires))
 
+local LogService = Environment.require("LogService")
+Environment.print = LogService.print
+Environment.warn = LogService.warn
+Environment.error = LogService.error
+Environment.info = LogService.info
+
 local Handlers = {}
 
 for _,handlerName in ipairs(fs.list(HANDLERS_PATH)) do
@@ -103,16 +109,29 @@ for _,handlerName in ipairs(fs.list(HANDLERS_PATH)) do
     end
 end
 
+-- TODO: Integrate with LogService
 -- Replace error handlers with more detailed ones
 Environment.error = function(message)
+    message = message or ""
+
     local env = getfenv(3)
-    error(("\n%s: %s\n%s\nStack End"):format(env.script.Path, message or "", debug.traceback("Stack Begin", 2)), 3)
+    if env.script then
+        error(("\n%s: %s\n%s\nStack End"):format(env.script.Path, message, debug.traceback("Stack Begin", 2)), 3)
+    else
+        error(("\nUnknown: %s\n%s\nStackEnd"):format(message, message, debug.traceback("Stack Begin", 2)), 3)
+    end
 end
 
 --[[
     Run all handlers at the same time, handlers are in charge of keeping track
     of their state.
 ]]
+--[[
 while true do
     parallel.waitForAny(unpack(Handlers))
+end
+]]
+local Parallel = Environment.require("Parallel")
+while true do
+    Parallel.waitForAny(Handlers, nil, 0.05)
 end

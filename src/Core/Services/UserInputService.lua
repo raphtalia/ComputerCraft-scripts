@@ -27,7 +27,7 @@ EventService.getEvent("key_up"):Connect(function(keyCode)
     local inputObject = Instance.new("InputObject", keyCode)
     if Keys[inputObject.Name] then
         Keys[inputObject.Name] = false
-        UserInputService.InputBegan:Fire(inputObject)
+        UserInputService.InputEnded:Fire(inputObject)
     end
 end)
 

@@ -4,10 +4,11 @@ local State = {
 
 local UserInputService = require("UserInputService")
 local CommandService = require("CommandService")
+local LogService = require("LogService")
 local TermUtils = require("TermUtils")
 
 TermUtils.clear()
-
+--[[
 local function autofill(text)
     State.Text = text
     return CommandService.autofillCommand(text)
@@ -26,8 +27,10 @@ UserInputService.InputBegan:Connect(function(input)
         end
     elseif keyName == "enter" then
         if State.Text ~= "" then
-            CommandService.runCommand(State.Text)
+            local text = State.Text
+            TermUtils.writeLine(text)
             State.Text = ""
+            CommandService.runCommand(text)
         end
     end
 end)
@@ -40,5 +43,16 @@ end)
 
 return function()
     TermUtils.clearLine()
-    input(nil, nil, autofill, State.Text)
+    read(nil, nil, autofill, State.Text)
+end
+]]
+
+local Shell = Instance.new("Shell")
+
+require("RunService"):BindToRenderStep("Shell", 1, function()
+    Shell:render()
+end)
+
+return function()
+    sleep(0.05)
 end

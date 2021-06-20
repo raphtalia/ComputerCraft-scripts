@@ -2,8 +2,8 @@ return {
     Help = "",
     Flags = {},
     Handle = function()
-        print("\n[Exit] Shutting down")
-        sleep(0.2)
+        print("[Exit] Shutting down")
+        wait(1)
         os.shutdown()
     end
 }

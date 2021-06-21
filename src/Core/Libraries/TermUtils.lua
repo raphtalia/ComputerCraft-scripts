@@ -11,9 +11,9 @@ function TermUtils.clearLine()
     term.setCursorPos(1, y)
 end
 
-function TermUtils.writeLine(text)
+function TermUtils.writeLine(...)
     TermUtils.clearLine()
-    term.write(text)
+    term.write(table.concat({...}, " "))
 end
 
 return TermUtils

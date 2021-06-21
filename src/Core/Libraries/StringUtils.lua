@@ -1,3 +1,5 @@
+local MathUtils = require("MathUtils")
+
 local StringUtils = {}
 
 function StringUtils.collapse(str, pattern)
@@ -10,14 +12,22 @@ function StringUtils.collapse(str, pattern)
 end
 
 function StringUtils.split(inputstr, sep)
-    -- https://stackoverflow.com/questions/1426954/split-string-in-lua
-    if sep == nil then
+    local t = {}
+    if type(sep) == "string" then
+        -- https://stackoverflow.com/questions/1426954/split-string-in-lua
+        if sep == nil then
             sep = "%s"
-    end
-    local t={}
-    for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
+        end
+
+        for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
             table.insert(t, str)
+        end
+    elseif type(sep) == "number" then
+        for i = 1, MathUtils.ceil(#inputstr, sep), sep do
+            table.insert(t, inputstr:sub(i, i + sep - 1))
+        end
     end
+
     return t
 end
 
